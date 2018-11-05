@@ -1,36 +1,42 @@
 import React, { Component } from 'react';
-import { Dropdown, DropdownToggle, DropdownMenu, Container, DropdownItem, Row} from 'reactstrap';
+import {Container, Row} from 'reactstrap';
 import API from "./utils/API"
-
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import './App.css'
 
 class App extends Component {
 
   constructor (props) {
     super(props);
-  
-    this.toggle = this.toggle.bind(this);
-    
-    this.state = {
-      dropdownOpen: false,
-      publications: [{name: "Articles"}, {name:"Blog"}, {name:"Glossary"}, {name:"States"}, {name:"Topics"}],
-      publication: "",
-      content: []
+      this.state = {
+      content:[],
+      url: "",
+      condition: false
     };
-  }
-  
-  toggle() {
-    this.setState(prevState => ({
-      dropdownOpen: !prevState.dropdownOpen
-    }));
+
+    this.handleMenu = this.handleMenu.bind(this);
   }
 
-  uploadContent = con => {
-  
-   this.setState({publication: con.toLowerCase()});
+componentDidMount(){
+  window.onpopstate = this.handlePopState.bind(this);
+  window.onload = this.handlePopState.bind(this);
+}
 
-   API.getContent(con.toLowerCase())
+handlePopState () {
+  let url1 = window.location.pathname.split("/");
+  let url = url1[1];
+  if(url) {
+    this.uploadContent(url)
+  } else {
+    this.setState({content: []})
+  };
+}
+
+  uploadContent (url) {
+    API.getContent(url)
    .then(res => this.displayContent(res))
    .catch(err => console.log(err))
+   console.log(url)
   }
 
   displayContent = data => {
@@ -40,45 +46,92 @@ class App extends Component {
     if (data.data.glossary) this.setState({content: data.data.glossary});
     if (data.data.states) this.setState({content: data.data.states});
     if (data.data.topics) this.setState({content: data.data.topics});
-    this.state.content.forEach(function(element){
-      element.excerpt = element.content.substring(0,20);
-    })
-    // console.log(this.state.content)
+    console.log(this.state.content)
   }
 
-  // hello = function(){
-    
-  //  console.log(this.state.content)
-  // }
+  handleHomePage(){
+    this.setState({content: []});
+  }
 
+  handleMenu(){
+    this.setState({
+      condition: !this.state.condition
+    })
+  }
+ 
   render() {
     return (
       <div className="App">
-       <Container>
-       <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
-        <DropdownToggle caret>
-          Dropdown
-        </DropdownToggle>
-        <DropdownMenu>
-         {this.state.publications
-         .map(key =>(
-            <DropdownItem onClick={() => this.uploadContent(key.name)}>{key.name}
-           </DropdownItem>
-         ))
-        }
-       </DropdownMenu>
-      </Dropdown> 
-      {this.state.content
+      <Container>
+       <div className="wrapper">
+      <Router>
+     <div>
+        <Menu className={ this.state.condition ? "menu menu_active" : "menu" }>
+          <div className="btn-wrapper">
+            <Button  className={ this.state.condition ? "menu-btn menu-btn_active" : "menu-btn" }
+        toggleClassName={ this.handleMenu }>
+              <span></span>
+            </Button>
+          </div>
+          <nav className="menu-list">
+          <div><Link onClick={() => this.handleHomePage()} to="/">Home</Link></div>
+          <div className="main-button" onClick={() => this.handlePopState()}><Link to="/articles">Articles</Link></div>
+          <div className="main-button" onClick={() => this.handlePopState()}><Link to="/blog">Blog</Link></div>
+          <div className="main-button" onClick={() => this.handlePopState()}><Link to="/glossary">Glossary</Link></div>
+          <div className="main-button" onClick={() => this.handlePopState()}><Link to="/states">States</Link></div>
+          <div className="main-button" onClick={() => this.handlePopState()}><Link to="/topics">Topics</Link></div>
+          </nav>
+        </Menu>
+        <Route path="/:id"/>
+        </div>
+    </Router>
+    <Content className={ this.state.condition ? "content content_active" : "content" }>
+    {this.state.content
       .map(index =>(
-       
         <Row>
-        <div lassName="content"  dangerouslySetInnerHTML={{__html: index.excerpt}}></div>
+        <h1 ><a href={'https://www.healthcare.gov'+ index.url}>{index.title}</a></h1>
+        <div className="content"  dangerouslySetInnerHTML={{__html: index.content}}></div>
         <br></br><br></br>
         </Row>
-      ))}  
+      ))} 
+      </Content>
+      </div>
       </Container>
       </div>
     );
+  }
+}
+
+class Button extends React.Component {
+  render() {
+    return (
+      <div
+        className={ this.props.className }
+        onClick={ this.props.toggleClassName }
+      >
+        { this.props.children }
+      </div>
+    )    
+  }
+}
+
+class Menu extends React.Component {
+  render() {
+    return (
+      <div className={ this.props.className}>
+        { this.props.children }
+      </div>
+    )    
+  }
+}
+
+class Content extends React.Component {
+  render() {
+    return (
+      <div className={ this.props.className }>
+        { this.props.children }
+      </div>
+    )    
   }
 }
 
