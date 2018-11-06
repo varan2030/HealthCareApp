@@ -731,6 +731,16 @@
     "@svgr/core" "^2.4.1"
     loader-utils "^1.1.0"
 
+"@sweetalert/transformer@^0.1.1":
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/@sweetalert/transformer/-/transformer-0.1.1.tgz#638bdd20b862f03579fd906578dc9355db00887a"
+
+"@sweetalert/with-react@^0.1.1":
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/@sweetalert/with-react/-/with-react-0.1.1.tgz#5fe4ca967ae8fb34868ef0b9e52013b783e665d5"
+  dependencies:
+    "@sweetalert/transformer" "^0.1.1"
+
 "@types/tapable@1.0.2":
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/@types/tapable/-/tapable-1.0.2.tgz#e13182e1b69871a422d7863e11a4a6f5b814a4bd"
@@ -2732,6 +2742,10 @@ es-to-primitive@^1.1.1:
     is-callable "^1.1.4"
     is-date-object "^1.0.1"
     is-symbol "^1.0.2"
+
+es6-object-assign@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/es6-object-assign/-/es6-object-assign-1.1.0.tgz#c2c3582656247c39ea107cb1e6652b6f9f24523c"
 
 escape-html@~1.0.3:
   version "1.0.3"
@@ -6566,6 +6580,10 @@ promise-inflight@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/promise-inflight/-/promise-inflight-1.0.1.tgz#98472870bf228132fcbdd868129bad12c3c029e3"
 
+promise-polyfill@^6.0.2:
+  version "6.1.0"
+  resolved "https://registry.yarnpkg.com/promise-polyfill/-/promise-polyfill-6.1.0.tgz#dfa96943ea9c121fca4de9b5868cb39d3472e057"
+
 promise@8.0.2:
   version "8.0.2"
   resolved "https://registry.yarnpkg.com/promise/-/promise-8.0.2.tgz#9dcd0672192c589477d56891271bdc27547ae9f0"
@@ -7804,6 +7822,13 @@ svgo@^1.0.0, svgo@^1.0.5:
     stable "~0.1.6"
     unquote "~1.1.1"
     util.promisify "~1.0.0"
+
+sweetalert@^2.1.2:
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/sweetalert/-/sweetalert-2.1.2.tgz#010baaa80d0dbdc86f96bfcaa96b490728594b79"
+  dependencies:
+    es6-object-assign "^1.1.0"
+    promise-polyfill "^6.0.2"
 
 symbol-tree@^3.2.2:
   version "3.2.2"

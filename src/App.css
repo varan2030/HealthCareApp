@@ -4,8 +4,7 @@
 }
 
 .wrapper {
-  position: relative;
-  overflow-x: hidden;
+
 }
 
 .menu {
@@ -36,14 +35,16 @@
   width: 100%;
 }
 
-.menu-list div {
+.menu-list a {
   text-decoration: none;
   text-transform: uppercase;
-  font-weight: 900;
+  font-weight: 300;
   color: #000;
 }
 
 .content {
+  justify-content: center;
+  align-content: center;
   transition: all 0.5s;
   position: relative;
   z-index: 0;
@@ -123,4 +124,24 @@
 
 .main-button:hover {
   color: #fff;
+}
+
+.swal-overlay {
+  background-color: rgba(245, 249, 253, 0.45);
+}
+
+.swal-modal {
+  background-color: rgb(217,224,229, 0.9);
+  border: 3px solid white;
+  width: 1200px;
+  text-align: left;
+}
+
+.header{
+  font-size: 40px;
+  color: rgba(228, 231, 236, 0.952);
+}
+
+.lang{
+  color: rgb(167, 77, 77);
 }

@@ -1,11 +1,20 @@
 body {
+  background: linear-gradient(rgba(6, 39, 67, 0.6), rgba(6, 39, 67, 0.5)), url('/images/bgr.jpeg');
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  font-family: sans-serif;
   margin: 0;
   padding: 0;
+  position: relative;
+  overflow-x: hidden;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+ 
 }
 
 code {
