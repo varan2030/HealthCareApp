@@ -51,7 +51,7 @@ handlePopState () {
   }
 
 //Handle recieved data from https://www.healthcare.gov/api and store in this.state.data
-  handleData = data => {
+  handleData  (data)  {
     this.setState({data: []});
     
     if (data.articles) this.setState({data: data.articles});
