@@ -17,10 +17,10 @@ This application display Articles, Blog, Glossary, States and Topic from https:/
 
 ### Page
 
-![Image](https://github.com/varan2030/HealthCareApp/public/images/page.png)
+![Image](https://github.com/varan2030/HealthCareApp/tree/master/public/images/page.png)
 
 
 ### Menu
 
 
-![Image](https://github.com/varan2030/HealthCareApp/public/images/menu.png)
+![Image](https://github.com/varan2030/HealthCareApp/tree/master/public/images/menu.png)
