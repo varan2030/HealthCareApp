@@ -2,16 +2,16 @@
 
 ### Overview
 
-This application display Articles, Blog, Glossary, States and Topic from https://www.healthcare.gov/api/
+This application displays Articles, Blog, Glossary, States and Topic from https://www.healthcare.gov/api/
 
 ### Instructions
 
 
-1. The application created on REACT.
+1. The application was created on REACT.
 
 2. The content displays Title, Content and URL.
 
-3. The application contains JEST and Enzyme tests. 
+3. The application runs JEST and Enzyme tests. 
 
 * Link to [Heroku](https://healthcare-app-api.herokuapp.com/).
 

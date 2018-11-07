@@ -24,16 +24,16 @@ class App extends Component {
     this.handleMenu = this.handleMenu.bind(this);                 
   }
 
-  // Load page when user click back and forward browser button
+  // Loads the page when a user clicks on the back and forward browser buttons
 componentDidMount(){
   window.onpopstate = this.handlePopState.bind(this);
   window.onload = this.handlePopState.bind(this);
 }
 
-//Get variable from current URL to run API function
+//Gets a variable (this.state.url) from the current URL
 handlePopState () {
   let url1 = window.location.pathname.split("/"); 
-  let url = url1[1];                                               //current type of content (articles, blog ...)
+  let url = url1[1];                                               //current content (articles, blog ...)
   this.setState({url: url});
   if(url) {
     this.getData(url)
@@ -50,7 +50,7 @@ handlePopState () {
    console.log(url)
   }
 
-//Handle recieved data from https://www.healthcare.gov/api and store in this.state.data
+//Handles the data received from https://www.healthcare.gov/api and stores in this.state.data
   handleData  (data)  {
     this.setState({data: []});
     
@@ -62,7 +62,7 @@ handlePopState () {
      console.log(this.state.data);
     }
  
-// Handle Home Page. Display no data
+// Handles Home Page. Displays no data
   handleHomePage(){
     this.setState({data: []})
     this.setState({url: ""});
@@ -75,7 +75,7 @@ handlePopState () {
     })
   }
 
-//Display Title, Content and URL when user clicks the card
+//Displays the Modal with Title, Content and URL when a user clicks the card
 clickCard (title, content, url){
     swal(<div>
    <h1 className="text-center"><a href={'https://www.healthcare.gov' + url}>{title}</a></h1>
@@ -113,7 +113,7 @@ clickCard (title, content, url){
     </Router>
     <Content className={ this.state.condition ? "content content_active" : "content" }> {/*change Content className*/}
     <div className="header text-center">{this.state.url.toUpperCase()}</div>
-   {/*Display data on cards*/}
+   {/*Displays data on the cards*/}
     {this.state.data
       .map(index =>(
         <Cards
